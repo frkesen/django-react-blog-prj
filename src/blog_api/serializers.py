@@ -6,7 +6,7 @@ from blog.models import Post, Comment, Like
 from django.db.models import Q
 
 
-class CommentSeializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     # status = serializers.ChoiceField(choices=Post.options)
     user = serializers.StringRelatedField()
     post = serializers.StringRelatedField()
@@ -33,7 +33,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     status = serializers.ChoiceField(choices=Post.options)
     author = serializers.SerializerMethodField()
     has_liked = serializers.SerializerMethodField()
-    comments = CommentSeializer(many=True)
+    comments = CommentSerializer(many=True)
     # like = LikeSerializer(many=True)
     owner = serializers.SerializerMethodField(read_only=True)
     update_url = serializers.HyperlinkedIdentityField(
